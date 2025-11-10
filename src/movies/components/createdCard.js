@@ -1,4 +1,8 @@
+import { createElement } from "react";
 import { apiConfig } from "../fetch/ApiConfig.js";
+
+
+let movieCounter = 0;
 
 export function createCard(movie){
 
@@ -7,10 +11,15 @@ export function createCard(movie){
         mCard.className = ""; //añadir clase
         const mImg = document.createElement("img");
         mImg.className = "movie-poster";
-        //mImg.setAttribute("src", `${baseUrl}${movie.poster_path}`)
+        mImg.setAttribute("src", `https://image.tmdb.org/t/p/w300$${movie.poster_path}`)
+        //esto puede ir aparte
+        mImg.addEventListener("click", (event)=>{
+            const detailedCard = document.querySelector("")
+            get
+        })
     }
 
-    //mImg addEventListener
+    
 
     const mTitulo = document.createElement("h1");
     mTitulo.className = "movie-title"
@@ -34,4 +43,44 @@ export function createCard(movie){
     mCard.appendChild(mFecha)
 
     return mCard;
+}
+
+export function createCardDetails(data, cast = []){
+
+    const details = document.createElement("div")
+    details.classList.add(`card${movieCounter}`)
+
+    const mImg = document.createElement("img");
+    mImg.className = "movie-poster"
+    mImg.setAttribute("src", `https://image.tmdb.org/t/p/w300${data.poster_path}`)
+
+    const mTitle = document.createElement("h1")
+    mTtile.className = "movie-title"
+    mTitle.textContent = data.original_title
+
+    const mDescription = document.createElement("p")
+    mDescription.textContent = data.overview
+
+    const actorContainer = document.createElement("div")
+    cast.forEach((actor)=>{
+        if(actor.poster_path !== null){
+            const actorDiv = document.createElement("div")
+            actorDiv.className = "" //añadir clase
+            const actorImg = document.createElement("img")
+            const actorName = document.createElement("p")
+            actorImg.setAttribute("src", `https://image.tmdb.org/t/p/w200${actor.profile_path}`)
+            actorImg.className = "" //añadir clase
+            actorName.textContent = actor.name;
+            actorName.className = "" //añadir clase
+            actorDiv.appendChild(actorImg)
+            actorDiv.appendChild(actorName)
+            actorContainer.appendChild(actorDiv)
+        }
+    })
+    details.appendChild(mImg)
+    details.appendChild(mTitle)
+    details.appendChild(mDescription)
+    details.appendChild(actorContainer)
+
+    return details;
 }

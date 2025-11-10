@@ -1,4 +1,6 @@
 import { apiConfig } from "./ApiConfig";
+import { showMovies } from "../functions/showMovies";
+
 
 export async function getMovies(container, typelist = "upcoming"){
 
@@ -15,4 +17,17 @@ export async function getMovies(container, typelist = "upcoming"){
     } catch(error) {
         console.log("error al cargar peliculas")
     }
+}
+
+export async function getMovieInDetail(container, id) {
+    try {
+        const response = await fetch (
+            `${apiConfig.baseUrl}${id}?api_key=${apiConfig.apiClave}`
+        );
+    if (!response.ok) {throw new Error("Error:" + response.status)}
+    const data = await response.json();
+
+    const cast = await getCast(id)
+    const card = create
+    } catch {}
 }
