@@ -1,8 +1,9 @@
-import { getMovies } from "../fetch/movieList"
+import { getMovies } from "../fetch/movieList" 
 
 export function createSelectListener(select){
     select.addEventListener("change", (event) => {
         const elementSelected = event.target
+        console.log(event.target.value)
         const mDisplay = displayMode()
         getMovies(mDisplay, elementSelected.value)
     })
@@ -12,21 +13,15 @@ export function displayMode(){
     const buttonGridMode = document.querySelector(".buttonGrid") 
     const buttonRowMode = document.querySelector(".buttonRows")
     const displayMode = document.querySelector("#movieDisplay") 
+    displayMode.className="movieDisplayGrid" 
     buttonGridMode.addEventListener('click', ()=>{
         displayMode.className= "movieDisplayGrid"
-        console.log("funciona grid")
     })
     buttonRowMode.addEventListener('click', ()=>{
         displayMode.className="movieDisplayRows" 
-        console.log("funciona row")
     })
     return displayMode
 }
-    
-
-export function displayMode(button){}
-
-
 
 export function inDetail(){
     

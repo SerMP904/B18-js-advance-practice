@@ -1,36 +1,27 @@
 import { apiConfig } from "./ApiConfig";
 import { showMovies } from "../functions/showMovies";
 
-
 export async function getMovies(container, typelist = "upcoming"){
-<<<<<<< HEAD
     try {
+        console.log(apiConfig.apiClave)
+        if (!apiConfig.baseUrl) {
+            throw new Error("API base URL is missing.");
+        } if (!apiConfig.apiClave){
+            throw new Error("API key is missing.")
+        }
         const response = await fetch(
-            `${apiConfig.baseUrl}${typelist}?api_key=${apiConfig.apiClave}`
-            
-        )
-    if (!response.ok) throw new Error("Error:" + response.status)
-    
-    const data = await response.json();
-    showMovies(data.results, container)
-
-    } catch(error) {
-        console.log(error)
-=======
-
-    try {
-        const response = await fetch(
+       
             `${apiConfig.baseUrl}${typelist}?api_key=${apiConfig.apiClave}`
         )
     if (!response.ok) {throw new Error("Error:" + response.status)}
     
-    const data = response.json();
-    console.log(data.results)
+    const data = await response.json();
+    console.log(data)
     showMovies(data.results, container)
 
-    } catch(error) {
-        console.log("error al cargar peliculas")
->>>>>>> fdf0c48ca9de39889cb636ae8c599e47622f751d
+    } catch (error) {
+        console.log("error al cargar peliculas", error)
+
     }
 }
 

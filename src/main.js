@@ -1,6 +1,8 @@
 import './scss/style.scss'
 import { selectMovie } from './movies/functions/selectMovies';
 import { createButton } from './movies/components/createButton';
+import { cardDetails } from './movies/functions/showMovies';
+
 
 document.querySelector('#app').innerHTML = ``
 
@@ -8,8 +10,6 @@ const app = document.querySelector("#app");
 
 const main = document.createElement("div")
 main.className = "main"
-
-const prueba = document.createElement("div")
 
 const buttonGrid = createButton("grid")
 const buttonRow = createButton("rows")
@@ -25,11 +25,16 @@ movieDistribution.className = "movieDistribution"
 const movieSelection = selectMovie() 
 movieSelection.className="movieSelection"
 
+const movieDetails = document.createElement("div")
+movieDetails.className= "detailMovie"
+
 buttonContainer.appendChild(buttonGrid)
 buttonContainer.appendChild(buttonRow)
+
 main.appendChild(buttonContainer)
 main.appendChild(movieSelection)
 movieDistribution.appendChild(movieDisplay)
 main.appendChild(movieDistribution)
+main.appendChild(movieDetails)
 app.appendChild(main)
-app.appendChild(prueba)
+
