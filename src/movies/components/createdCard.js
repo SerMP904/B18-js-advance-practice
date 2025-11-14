@@ -12,6 +12,7 @@ export function createCard(movie){
     //Aqui va un eventListener para los detalles
     mImg.addEventListener("click", (event)=>{
         mCard.textContent("hola")
+        mCard.setAttribute("id", "hola")
     })
 
 
