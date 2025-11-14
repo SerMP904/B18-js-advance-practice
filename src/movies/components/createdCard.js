@@ -1,10 +1,45 @@
-import { createElement } from "react";
-import { apiConfig } from "../fetch/ApiConfig.js";
-
+import { apiConfig } from "../fetch/ApiConfig";
 
 let movieCounter = 0;
 
 export function createCard(movie){
+
+    const mCard = document.createElement("div");
+    mCard.className = ""; //añadir clase
+    const mImg = document.createElement("img");
+    mImg.className = "";
+    mImg.setAttribute("src", `https://image.tmdb.org/t/p/w300${movie.poster_path}`)
+    mImg.addEventListener("click")
+    //Aqui va un eventListener para los detalles
+    mImg.addEventListener("click", (event)=>{
+        mCard.textContent("hola")
+        mCard.setAttribute("id", "hola")
+    })
+
+
+    const mInfo = document.createElement("div");
+
+
+    mTitulo.className = ""
+    mTitulo.textContent = movie.original_title;
+
+
+    mOverview.className = "movieOverview";
+
+    fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiConfig.apiClave}&language=es-ES`)
+        .then(response => {
+            if (!response.ok){
+                throw new Error("no hay sinopsis" + response.status)
+            }
+            return response.json()
+        }) .then(data => {
+            mOverview.textContent = data.overview;
+  }) .catch(error => {
+    console.error("Error en la sinopsis:", error);
+  });
+
+
+
 
     if (movie.poster_path !== null){
         const mCard = document.createElement("div")
@@ -29,6 +64,7 @@ export function createCard(movie){
     mOverview.className = "movie-overview";
     mOverview.textContent = movie.overview // buscar nombre path
 
+
     const mRating = document.createElement("div");
     mRating.className= ""; //añadir clase
     mRating.textContent= movie.vote_average;
@@ -37,10 +73,14 @@ export function createCard(movie){
     mFecha.classList = "";
     mFecha.textContent = `${movie.release_date}`
 
-    mCard.appendChild(mImg);
-    mCard.appendChild(mTitulo)
-    mCard.appendChild(mRating)
-    mCard.appendChild(mFecha)
+    mCard.appendChild(mImg)
+
+    mInfo.appendChild(mTitulo)
+    mInfo.appendChild(mOverview)
+    mInfo.appendChild(mRating)
+    mInfo.appendChild(mFecha)
+
+    mCard.appendChild(mInfo)
 
     return mCard;
 }
@@ -53,6 +93,9 @@ export function createCardDetails(data, cast = []){
     const mImg = document.createElement("img");
     mImg.className = "movie-poster"
     mImg.setAttribute("src", `https://image.tmdb.org/t/p/w300${data.poster_path}`)
+    mImg.addEventListener("click", (event) =>{
+        details.textContent("hola")
+    })
 
     const mTitle = document.createElement("h1")
     mTtile.className = "movie-title"

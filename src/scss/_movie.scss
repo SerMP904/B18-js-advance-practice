@@ -7,7 +7,65 @@
 #movie-list-container {
   @extend .mt-5;
 }
+//
 
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.movieSelection{
+  align-self: flex-end;
+}
+
+.buttons{
+  align-items: left;
+}
+
+.movieDistribution {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+/*
+.movieDisplay{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+  object-fit: cover;
+}*/
+.hola {
+  font-size: 30px;
+}
+.movieDisplayGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movieDisplayRows {
+  display: grid;
+  grid-template-rows: repeat(1fr, 1fr);
+  gap: 20px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.movieOverview {
+  display: -webkit-box;            
+  -webkit-box-orient: vertical;    
+  -webkit-line-clamp: 2;   
+  line-clamp: 2;        
+  overflow: hidden;               
+  text-overflow: ellipsis;         
+  white-space: normal;             
+}
+//
+/*
 .movie-grid,
 .movie-list,
 .movie-details {
@@ -109,4 +167,8 @@
 
 #search-movie-input {
   border: none;
+<<<<<<< HEAD
+}*/
+=======
 }
+>>>>>>> fdf0c48ca9de39889cb636ae8c599e47622f751d

@@ -1,22 +1,35 @@
 import './scss/style.scss'
 import { selectMovie } from './movies/functions/selectMovies';
+import { createButton } from './movies/components/createButton';
 
-/*
-document.querySelector('#app').innerHTML = `
-`*/
+document.querySelector('#app').innerHTML = ``
 
 const app = document.querySelector("#app");
+
 const main = document.createElement("div")
 main.className = "main"
-app.appendChild(main)
+
+const prueba = document.createElement("div")
+
+const buttonGrid = createButton("grid")
+const buttonRow = createButton("rows")
+const buttonContainer = document.createElement("div")
+buttonContainer.className="buttons"
+
+const movieDisplay = document.createElement("div")
+movieDisplay.setAttribute("id", "movieDisplay")
 
 const movieDistribution = document.createElement("div")
-movieDistribution.setAttribute("#movie-list-container") 
-movieDistribution.className("movie-grid") //variable, columna o fila dependediendo de que boton pulses
+movieDistribution.className = "movieDistribution"
 
 const movieSelection = selectMovie() 
-movieSelection.className("movie-list")
+movieSelection.className="movieSelection"
 
-
+buttonContainer.appendChild(buttonGrid)
+buttonContainer.appendChild(buttonRow)
+main.appendChild(buttonContainer)
+main.appendChild(movieSelection)
+movieDistribution.appendChild(movieDisplay)
 main.appendChild(movieDistribution)
-movieDistribution.appendChild(movieSelection)
+app.appendChild(main)
+app.appendChild(prueba)
