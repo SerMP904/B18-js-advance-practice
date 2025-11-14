@@ -3,6 +3,7 @@ import { apiConfig } from "../fetch/ApiConfig";
 let movieCounter = 0;
 
 export function createCard(movie){
+
     const mCard = document.createElement("div");
     mCard.className = ""; //añadir clase
     const mImg = document.createElement("img");
@@ -18,11 +19,11 @@ export function createCard(movie){
 
     const mInfo = document.createElement("div");
 
-    const mTitulo = document.createElement("h1");
+
     mTitulo.className = ""
     mTitulo.textContent = movie.original_title;
 
-    const mOverview = document.createElement("p");
+
     mOverview.className = "movieOverview";
 
     fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiConfig.apiClave}&language=es-ES`)
@@ -37,6 +38,31 @@ export function createCard(movie){
     console.error("Error en la sinopsis:", error);
   });
 
+
+
+
+    if (movie.poster_path !== null){
+        const mCard = document.createElement("div")
+        mCard.className = ""; //añadir clase
+        const mImg = document.createElement("img");
+        mImg.className = "movie-poster";
+        mImg.setAttribute("src", `https://image.tmdb.org/t/p/w300$${movie.poster_path}`)
+        //esto puede ir aparte
+        mImg.addEventListener("click", (event)=>{
+            const detailedCard = document.querySelector("")
+            get
+        })
+    }
+
+    
+
+    const mTitulo = document.createElement("h1");
+    mTitulo.className = "movie-title"
+    mTitulo.textContent = movie.original_title;
+
+    const mOverview = document.createElement("p");
+    mOverview.className = "movie-overview";
+    mOverview.textContent = movie.overview // buscar nombre path
 
 
     const mRating = document.createElement("div");

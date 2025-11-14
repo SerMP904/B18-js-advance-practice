@@ -24,6 +24,8 @@ export function displayMode(){
 }
     
 
+export function displayMode(button){}
+
 
 
 export function inDetail(){
