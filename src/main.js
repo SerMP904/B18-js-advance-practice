@@ -1,7 +1,7 @@
 import './scss/style.scss'
 import { selectMovie } from './movies/functions/selectMovies';
 import { createButton } from './movies/components/createButton';
-import { cardDetails } from './movies/functions/showMovies';
+
 
 
 document.querySelector('#app').innerHTML = ``
@@ -22,6 +22,9 @@ movieDisplay.setAttribute("id", "movieDisplay")
 const movieDistribution = document.createElement("div")
 movieDistribution.className = "movieDistribution"
 
+const movieNumber = document.createElement("div")
+movieNumber.className = "movieNumber"
+
 const movieSelection = selectMovie() 
 movieSelection.className="movieSelection"
 
@@ -33,8 +36,9 @@ buttonContainer.appendChild(buttonRow)
 
 main.appendChild(buttonContainer)
 main.appendChild(movieSelection)
+main.appendChild(movieNumber)
+movieNumber.appendChild(movieDetails)
 movieDistribution.appendChild(movieDisplay)
-main.appendChild(movieDistribution)
-main.appendChild(movieDetails)
+movieNumber.appendChild(movieDistribution)
 app.appendChild(main)
 

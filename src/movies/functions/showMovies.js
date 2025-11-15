@@ -1,4 +1,4 @@
-import { createCard } from "../components/createdCard";
+import { createCard, detailsCard } from "../components/createdCard";
 
 export function showMovies(movies, container){
     if (!movies || movies.length === 0){
@@ -10,19 +10,23 @@ export function showMovies(movies, container){
 
     if(Array.isArray(movies)){
         container.innerHTML = "";
-
         movies.forEach((movie) =>{
             const movieCard = createCard(movie);
             container.appendChild(movieCard)
         })} else {
-            console.log("sorry") //quitar
-            const oneMovie = CardDetails(movies) //esto es experimental, deberia estar atado a un addeventlistener
-            container.appendChild(oneMovie)
+            console.log("One movie") //quitar
+            const oneMovie = detailsCard(movies) //esto es experimental, deberia estar atado a un addeventlistener
+            const displayMode = document.querySelector(".movieDistribution") 
+            displayMode.className="movieFocus"
+            const newContainer = document.querySelector(".movieNumber")
+            console.log(oneMovie)
+            console.log(displayMode)
+            newContainer.appendChild(oneMovie)
     }
 }
-
-export function cardDetails(details, movie){
+/*
+export function cardDetails(movie){
     
     details.appendChild(refImg)
     return details
-}
+}*/

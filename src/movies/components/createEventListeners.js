@@ -9,11 +9,14 @@ export function createSelectListener(select){
     })
 }
 
-export function displayMode(){
+function displayMode(){
     const buttonGridMode = document.querySelector(".buttonGrid") 
     const buttonRowMode = document.querySelector(".buttonRows")
+
     const displayMode = document.querySelector("#movieDisplay") 
+    
     displayMode.className="movieDisplayGrid" 
+
     buttonGridMode.addEventListener('click', ()=>{
         displayMode.className= "movieDisplayGrid"
     })
