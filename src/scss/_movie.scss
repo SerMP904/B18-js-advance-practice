@@ -24,6 +24,7 @@ $secondary-color: #2ecc71;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: black;
 }
 
 .movieSelection{
@@ -72,10 +73,16 @@ $secondary-color: #2ecc71;
 
 .detailMovie{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: $grid-gap;
   padding: $grid-gap;
-  justify-items: center;
+}
+
+.movieInfo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 75%;
 }
 
 .movieOverview {
@@ -93,30 +100,26 @@ $secondary-color: #2ecc71;
   border-radius: $tile-border-radius;
   box-shadow: $tile-shadow;
   width: 100%;
-  max-width: 350px;
-  display: flex;
-  flex-direction: row;
+  align-self: center;
   padding: $tile-padding;
-  transition: box-shadow 0.3s ease-in-out;
   &:hover {
     box-shadow: $tile-hover-shadow;
   }
 }
 
+.imgDiv{
+  gap: 5px
+}
 .movieImage {
-    width: 25%; 
+    width: auto; 
     height: auto;
     object-fit: cover;
     border-radius: 6px;
     margin-right: 20px;
+    align-self: center;
   }
 
-.movieInfo{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 75%;
-}
+
 .movieReleaseDate {
         font-style: italic;
       }
@@ -125,6 +128,21 @@ $secondary-color: #2ecc71;
         font-weight: bold;
         color: $primary-color;
       }
+
+.castContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-items: left;
+
+}
+
+.crewContainer{
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  align-items: center;
+}
 //
 /*
 .movie-grid,
