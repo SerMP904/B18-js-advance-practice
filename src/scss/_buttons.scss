@@ -7,8 +7,14 @@
     }
   }
 }
+.buttonNull{
+  display: none;
+}
 
+.buttonGrid,
+.buttonRows,
 .returnButton{
   border-radius: 15%;
-  padding: 30px;
+  padding: 5px;
+  gap:5px;
 }

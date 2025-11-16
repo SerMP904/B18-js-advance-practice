@@ -1,13 +1,13 @@
 import { apiConfig } from "../fetch/ApiConfig";
 import { showMovies } from "../functions/showMovies";
-import { createButton } from "./createButton";
+import { getMovies } from "../fetch/movieList";
 
 export function createCard(movie) {
   const mCard = document.createElement("div");
-  mCard.className = "movie-card";
-  //añadir clase
+  mCard.className = "movieCard";
+
   const mImg = document.createElement("img");
-  mImg.className = "movie-img";
+  mImg.className = "movieImg";
   mImg.setAttribute(
     "src",
     `https://image.tmdb.org/t/p/w300${movie.poster_path}`
@@ -33,18 +33,18 @@ export function createCard(movie) {
     });
 
   const mTitulo = document.createElement("h1");
-  mTitulo.className = "movie-title"; //añadir clase
+  mTitulo.className = "movieTitle"; 
   mTitulo.textContent = movie.original_title;
 
   const mOverview = document.createElement("p");
-  mOverview.className = "movie-overview"; //añadir clase
+  mOverview.className = "movieOverview"; 
 
   const mRating = document.createElement("div");
-  mRating.className = "movie-rating"; //añadir clase
+  mRating.className = "movieRating"; 
   mRating.textContent = movie.vote_average;
 
   const mFecha = document.createElement("p");
-  mFecha.classList = "movie-date"; //añadir clase
+  mFecha.classList = "movieDate"; 
   mFecha.textContent = `${movie.release_date}`;
 
   mImg.addEventListener("click", () => {
@@ -63,11 +63,15 @@ export function createCard(movie) {
   return mCard;
 }
 
-export function detailsCard(movie) {
-  const detailsCard = document.createElement("div");
-  detailsCard.className = "detailMovie";
+export function detailsCard(movie, typelist) {
+  
+  const detailsCard = document.createElement("div")
+  detailsCard.className="detailMovie"
+  console.log(detailsCard);
 
-  console.log(movie);
+  const movieDisplay = document.querySelector("#movieDisplay")
+  const displayClass = movieDisplay.className
+  movieDisplay.className="movieNull1"
 
   const movieInfo = document.createElement("div");
   movieInfo.className = "movieInfo";
@@ -78,12 +82,16 @@ export function detailsCard(movie) {
   movieImg.setAttribute("src",`https://image.tmdb.org/t/p/w300${movie.poster_path}`);
 
   const movieTitle = document.createElement("h2");
-  movieTitle.classname = "movieTitle";
+  movieTitle.className = "movieTitle";
   movieTitle.textContent = movie.original_title;
 
   const movieDescription = document.createElement("p");
-  movieDescription.classname = "movieOverview";
+  movieDescription.className = "movieOverview";
   movieDescription.textContent = movie.overview;
+
+  const movieDate = document.createElement("p");
+  movieDate.classList = "movieDate"; 
+  movieDate.textContent = `${movie.release_date}`
 
   const castContainer = document.createElement("div");
   castContainer.className = "castContainer";
@@ -103,12 +111,12 @@ export function detailsCard(movie) {
       castArray.forEach((actor) => {
         if (actor.profile_path !== null) {
           const castDiv = document.createElement("div");
-          castDiv.classList.add("castDiv");
+          castDiv.className ="castDiv";
           const castImg = document.createElement("img");
           const castName = document.createElement("p");
-          castImg.classList.add("castImg");
+          castImg.className="castImg";
           castImg.setAttribute("src", `https://image.tmdb.org/t/p/w200${actor.profile_path}`);
-          castName.classList.add("castName");
+          castName.className="castName";
           castName.textContent = actor.name;
           castDiv.append(castImg, castName);
           castContainer.appendChild(castDiv);
@@ -118,12 +126,12 @@ export function detailsCard(movie) {
       crewArray.forEach((member) => {
         if (member.profile_path !== null) {
           const crewDiv = document.createElement("div");
-          crewDiv.classList.add("crew-div");
+          crewDiv.className="crewDiv";//añadir clase
           const crewImg = document.createElement("img");
           const crewName = document.createElement("p");
-          crewImg.classList.add("crew-img");
+          crewImg.className="crewImg"; //añadir clase
           crewImg.setAttribute("src", `https://image.tmdb.org/t/p/w200${member.profile_path}`);
-          crewName.classList.add("crew-name");
+          crewName.className= "crewName"; //añadir clase
           crewName.textContent = member.name;
           crewDiv.append(crewImg, crewName);
           crewContainer.appendChild(crewDiv);
@@ -134,21 +142,39 @@ export function detailsCard(movie) {
   const secondaryDiv = document.createElement("div")
   secondaryDiv.className="imgDiv"
 
-  const returnButton = createButton("return")
+  const gridButton = document.querySelector("#gridButton")
+  gridButton.className="buttonNull"
+  const rowButton = document.querySelector("#rowButton")
+  rowButton.className="buttonNull";
+
+  const returnButton = document.querySelector("#returnButton")
+  returnButton.className="returnButton"
   
-  returnButton.addEventListener("click", (event)=>{
-    //aqui se viene lo bueno
+  returnButton.addEventListener("click", ()=>{
+    
+    detailsCard.remove();
+
+    movieDisplay.className = displayClass;
+    movieDisplay.className= displayClass
+
+    gridButton.className="buttonGrid"
+    rowButton.className="buttonRow"
+    returnButton.className="buttonNull"
+    
+    const movieGrid = document.querySelector("#movieDisplay"); 
+    movieGrid.innerHTML = "";  
+
+    getMovies(movieGrid, typelist);
   })
-  
-  secondaryDiv.appendChild(returnButton);
+
   secondaryDiv.appendChild(movieImg);
   movieInfo.appendChild(movieTitle);
   movieInfo.appendChild(movieDescription);
+  movieInfo.appendChild(movieDate);
   movieInfo.appendChild(castContainer);
   movieInfo.appendChild(crewContainer);
   detailsCard.appendChild(secondaryDiv);
   detailsCard.appendChild(movieInfo);
-  //release date
-  //crew
+
   return detailsCard;
 }

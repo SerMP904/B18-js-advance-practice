@@ -12,7 +12,13 @@ const main = document.createElement("div")
 main.className = "main"
 
 const buttonGrid = createButton("grid")
+buttonGrid.setAttribute("id", "gridButton")
 const buttonRow = createButton("rows")
+buttonRow.setAttribute("id", "rowButton")
+const returnButton = createButton("return")
+returnButton.className="buttonNull"
+returnButton.setAttribute("id", "returnButton")
+
 const buttonContainer = document.createElement("div")
 buttonContainer.className="buttons"
 
@@ -20,25 +26,22 @@ const movieDisplay = document.createElement("div")
 movieDisplay.setAttribute("id", "movieDisplay")
 
 const movieDistribution = document.createElement("div")
-movieDistribution.className = "movieDistribution"
+movieDistribution.setAttribute("id", "moviesShow")
 
-const movieNumber = document.createElement("div")
-movieNumber.className = "movieNumber"
+const movieMainGrid = document.createElement("div")
+movieMainGrid.className = "movieMainGrid" //cambiar nombre de la clase
 
 const movieSelection = selectMovie() 
 movieSelection.className="movieSelection"
 
-const movieDetails = document.createElement("div")
-movieDetails.className= "detailMovie"
-
 buttonContainer.appendChild(buttonGrid)
 buttonContainer.appendChild(buttonRow)
+buttonContainer.appendChild(returnButton)
 
 main.appendChild(buttonContainer)
 main.appendChild(movieSelection)
-main.appendChild(movieNumber)
-movieNumber.appendChild(movieDetails)
+main.appendChild(movieMainGrid)
 movieDistribution.appendChild(movieDisplay)
-movieNumber.appendChild(movieDistribution)
+movieMainGrid.appendChild(movieDistribution)
 app.appendChild(main)
 

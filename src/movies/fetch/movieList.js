@@ -17,23 +17,10 @@ export async function getMovies(container, typelist = "upcoming"){
     
     const data = await response.json();
     console.log(data)
-    showMovies(data.results, container)
+    showMovies(data.results, container, typelist)
 
     } catch (error) {
         console.log("error al cargar peliculas", error)
 
     }
-}
-
-export async function getMovieInDetail(container, id) {
-    try {
-        const response = await fetch (
-            `${apiConfig.baseUrl}${id}?api_key=${apiConfig.apiClave}`
-        );
-    if (!response.ok) {throw new Error("Error:" + response.status)}
-    const data = await response.json();
-
-    const cast = await getCast(id)
-    const card = create
-    } catch {}
 }
