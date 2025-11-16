@@ -29,8 +29,7 @@ const movieDistribution = document.createElement("div")
 movieDistribution.setAttribute("id", "moviesShow")
 
 const movieMainGrid = document.createElement("div")
-movieMainGrid.className = "movieMainGrid" //cambiar nombre de la clase
-
+movieMainGrid.className = "movieMainGrid"
 const movieSelection = selectMovie() 
 movieSelection.className="movieSelection"
 

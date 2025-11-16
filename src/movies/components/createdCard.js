@@ -126,12 +126,12 @@ export function detailsCard(movie, typelist) {
       crewArray.forEach((member) => {
         if (member.profile_path !== null) {
           const crewDiv = document.createElement("div");
-          crewDiv.className="crewDiv";//añadir clase
+          crewDiv.className="crewDiv";
           const crewImg = document.createElement("img");
           const crewName = document.createElement("p");
-          crewImg.className="crewImg"; //añadir clase
+          crewImg.className="crewImg"; 
           crewImg.setAttribute("src", `https://image.tmdb.org/t/p/w200${member.profile_path}`);
-          crewName.className= "crewName"; //añadir clase
+          crewName.className= "crewName";
           crewName.textContent = member.name;
           crewDiv.append(crewImg, crewName);
           crewContainer.appendChild(crewDiv);
