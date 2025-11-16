@@ -64,7 +64,7 @@ $secondary-color: #2ecc71;
 
 .detailMovie{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 3fr;
   gap: $grid-gap;
   padding: $grid-gap;
   color: $primary-color;
@@ -73,8 +73,9 @@ $secondary-color: #2ecc71;
 .movieInfo{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 75%;
+  justify-content: space-between;
+  width: 100%;
+  overflow: hidden;
 }
 
 .movieOverview {
@@ -106,8 +107,13 @@ $secondary-color: #2ecc71;
 .movieDate{
   color:$primary-color
 }
+
 .imgDiv{
-  gap: 30px
+  gap: 30px;
+  display: flex; 
+  flex-direction: row; 
+  justify-content: flex-start;
+  width: 25%;
 }
 
 .movieImage {
@@ -118,7 +124,7 @@ $secondary-color: #2ecc71;
     margin-right: 20px;
     align-self: center;
     justify-self: center;
-  }
+}
 
 
 .movieReleaseDate {
@@ -130,17 +136,39 @@ $secondary-color: #2ecc71;
         color: $primary-color;
       }
 
+.castDiv{
+  scroll-snap-align: start;
+  align-items: center;
+  box-sizing: border-box;
+}
+
 .castContainer{
   display: flex;
   flex-direction: row;
   gap: 2px;
-  align-items: left;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
+}
 
+.crewDiv{
+  scroll-snap-align: start;
+  align-items: center;
 }
 
 .crewContainer{
   display: flex;
   flex-direction: row;
   gap: 2px;
-  align-items: center;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  flex-wrap: nowrap;
+  scroll-snap-type: x mandatory;
 }
+
+.castContainer::-webkit-scrollbar {
+  height: 8px;}
+
+.crewContainer::-webkit-scrollbar {
+  height: 8px;}
