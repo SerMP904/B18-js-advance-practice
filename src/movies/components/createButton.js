@@ -11,5 +11,12 @@ export function createButton(mode){
         bImg.setAttribute("src", "list-layout.svg")
         button.appendChild(bImg)
     }
+
+    if (mode === "return") {
+        button.className="returnButton"
+        bImg.setAttribute("src", "left-arrow.svg")
+        button.appendChild(bImg)
+    }
+
     return button;
 }
