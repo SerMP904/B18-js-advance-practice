@@ -93,6 +93,12 @@ export function detailsCard(movie, typelist) {
   movieDate.classList = "movieDate"; 
   movieDate.textContent = `${movie.release_date}`
 
+  const mRating = document.createElement("div");
+  mRating.className = "movieRating"; 
+  mRating.textContent = movie.vote_average;
+
+  const mDirector = document.createElement("p");
+
   const castContainer = document.createElement("div");
   castContainer.className = "castContainer";
 
@@ -125,6 +131,10 @@ export function detailsCard(movie, typelist) {
 
       crewArray.forEach((member) => {
         if (member.profile_path !== null) {
+        if (member.job === 'Director') {
+          mDirector.textContent = member.name;
+          console.log(member.name)
+        } else{
           const crewDiv = document.createElement("div");
           crewDiv.className="crewDiv";
           const crewImg = document.createElement("img");
@@ -136,6 +146,7 @@ export function detailsCard(movie, typelist) {
           crewDiv.append(crewImg, crewName);
           crewContainer.appendChild(crewDiv);
           console.log("crew")
+        }
         }
       })});
   
@@ -169,8 +180,10 @@ export function detailsCard(movie, typelist) {
 
   secondaryDiv.appendChild(movieImg);
   movieInfo.appendChild(movieTitle);
+  movieInfo.appendChild(mDirector);
   movieInfo.appendChild(movieDescription);
   movieInfo.appendChild(movieDate);
+  movieInfo.appendChild(mRating);
   movieInfo.appendChild(castContainer);
   movieInfo.appendChild(crewContainer);
   detailsCard.appendChild(secondaryDiv);
